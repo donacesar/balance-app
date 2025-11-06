@@ -3,10 +3,44 @@
 API для управления балансом пользователей на Laravel.
 
 ## Функционал
-- POST /api/deposit — зачисление средств
-- POST /api/withdraw — списание средств (баланс не может уйти в минус)
-- POST /api/transfer — перевод между пользователями
-- GET /api/balance/{user_id} — получение текущего баланса
+- Зачисление средств пользователю\
+\
+POST /api/deposit\
+{ "user_id": 1,
+"amount": 500.00,
+  "comment": "Пополнение через карту"
+}
+  
+
+- Cписание средств (баланс не может уйти в минус)\
+\
+  POST /api/withdraw\
+  {
+  "user_id": 1,
+  "amount": 200.00,
+  "comment": "Покупка подписки"
+  }
+
+
+- Перевод между пользователями\
+\
+  POST /api/transfer\
+  {
+  "from_user_id": 1,
+  "to_user_id": 2,
+  "amount": 150.00,
+  "comment": "Перевод другу"
+  }
+
+
+- Получение текущего баланса\
+\
+  GET /api/balance/{user_id}\
+  {
+  "user_id": 1,
+  "balance": 350.00
+  }
+
 
 ## Технологии
 - PHP 8.2
@@ -38,7 +72,7 @@ docker-compose up -d
 docker-compose exec app php artisan migrate
 ```
 Приложение будет доступно по: http://localhost:8000
-git 
+
 ## Пример запроса
 
 ```
